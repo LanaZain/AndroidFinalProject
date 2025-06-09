@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">finalProject</string>
+    <string name="assignments">Assignments</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="assignments_head">Assignments</string>
+</resources>

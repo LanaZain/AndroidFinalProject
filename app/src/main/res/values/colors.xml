@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="teal_700">#018786</color>
+    <color name="light_pink">#F3E9E9</color>
+    <color name="gray_100">#FAF9F9</color>
+    <color name="pink">#FFC7C7</color>
+    <color name="rose_50">#fff1f2</color>
+    <color name="rose_300">#fda4af</color>
+
+    <!-- Primary Text and UI -->
+    <color name="red_800">#991b1b</color>
+    <color name="gray_600">#4b5563</color>
+
+</resources>

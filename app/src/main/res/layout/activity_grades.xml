@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F6F4E6">
+
+    <!-- Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#C49B94"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_media_previous"
+            android:contentDescription="Back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Grades"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:padding="16dp">
+
+        <TableLayout
+            android:id="@+id/gradesTable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            android:background="@android:color/white">
+
+            <!-- Header Row -->
+            <TableRow android:background="#EFDADA">
+                <TextView
+                    android:text="Subject"
+                    android:textStyle="bold"
+                    android:textColor="#964B4B"
+                    android:padding="8dp" />
+                <TextView
+                    android:text="Assignment/Exam"
+                    android:textStyle="bold"
+                    android:textColor="#964B4B"
+                    android:padding="8dp" />
+                <TextView
+                    android:text="Grade /100%"
+                    android:textStyle="bold"
+                    android:textColor="#964B4B"
+                    android:padding="8dp" />
+            </TableRow>
+            <!-- Data rows will be added from Java -->
+        </TableLayout>
+    </ScrollView>
+    <include
+        layout="@layout/bottom_nav"
+        android:layout_gravity="bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
