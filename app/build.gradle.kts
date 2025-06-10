@@ -34,7 +34,7 @@ android {
 dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.1")
     implementation ("com.google.android.material:material:1.10.0")
-
+    implementation ("com.android.volley:volley:1.2.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation(libs.appcompat)
     implementation(libs.material)

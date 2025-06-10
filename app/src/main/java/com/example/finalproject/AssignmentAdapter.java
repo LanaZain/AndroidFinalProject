@@ -2,6 +2,7 @@ package com.example.finalproject;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,20 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+// --- CHANGE 1: The adapter now manages a list of AssignmentItem objects ---
 public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.ViewHolder> {
     private Context context;
-    private List<Assignment> assignments;
+    private List<AssignmentItem> assignmentItems; // <-- This list has changed
     private OnItemClickListener listener;
 
-    // Interface for handling item clicks
     public interface OnItemClickListener {
-        void onItemClick(Assignment assignment);
+        void onItemClick(AssignmentItem item); // <-- The click listener also passes the whole item
     }
 
-    // Adapter constructor
-    public AssignmentAdapter(Context context, List<Assignment> assignments, OnItemClickListener listener) {
+    // --- CHANGE 2: The constructor now accepts a List<AssignmentItem> ---
+    public AssignmentAdapter(Context context, List<AssignmentItem> assignmentItems, OnItemClickListener listener) {
         this.context = context;
-        this.assignments = assignments;
+        this.assignmentItems = assignmentItems;
         this.listener = listener;
     }
 
@@ -38,41 +39,47 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Assignment assignment = assignments.get(position);
+        // --- CHANGE 3: Get the AssignmentItem for the current position ---
+        AssignmentItem currentItem = assignmentItems.get(position);
+        Assignment assignment = currentItem.getAssignment(); // Get the pure assignment from the wrapper
+        String status = currentItem.getSubmissionStatus(); // Get the status from the wrapper
 
+        // Now populate the views
         holder.title.setText(assignment.getTitle());
         holder.desc.setText(assignment.getDescription());
-        holder.dueDate.setText("Due: " + assignment.getDueDate());
-        holder.status.setText(assignment.getStatus());
+        holder.dueDate.setText(assignment.getDueDate()); // The due date is already formatted
+        holder.status.setText(status);
 
-        // Set color based on status
-        switch (assignment.getStatus()) {
-            case "Graded":
+        // Set color based on status (the status text is already nicely formatted)
+        // Note: Compare against the formatted status string.
+        switch (status.trim().toLowerCase()) {
+            case "graded":
                 holder.status.setTextColor(Color.parseColor("#008000")); // Green
                 break;
-            case "Pending":
-                holder.status.setTextColor(Color.parseColor("#FFD700")); // Yellow
-                break;
-            case "Submitted":
+            case "submitted":
                 holder.status.setTextColor(Color.parseColor("#0000FF")); // Blue
                 break;
-            case "Late":
+            case "late":
                 holder.status.setTextColor(Color.parseColor("#FF0000")); // Red
+                break;
+            case "pending":
+                holder.status.setTextColor(Color.parseColor("#FFA500")); // Orange
                 break;
             default:
                 holder.status.setTextColor(Color.BLACK);
         }
 
+
         // Set click listener
-        holder.itemView.setOnClickListener(v -> listener.onItemClick(assignment));
+        holder.itemView.setOnClickListener(v -> listener.onItemClick(currentItem));
     }
 
     @Override
     public int getItemCount() {
-        return assignments.size();
+        // --- CHANGE 4: The item count is the size of the new list ---
+        return assignmentItems.size();
     }
 
-    // ViewHolder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView title, desc, dueDate, status;
 

@@ -1,17 +1,23 @@
 package com.example.finalproject;
 
 public class Assignment {
-    private String title, description, dueDate, status;
+    // Note: I've added an ID field. It's very useful to have.
+    private int id;
+    private String title;
+    private String description;
+    private String dueDate;
 
-    public Assignment(String title, String description, String dueDate, String status) {
+    // Constructor updated to remove status
+    public Assignment(int id, String title, String description, String dueDate) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
-        this.status = status;
     }
 
+    // Getters
+    public int getId() { return id; }
     public String getTitle() { return title; }
     public String getDescription() { return description; }
     public String getDueDate() { return dueDate; }
-    public String getStatus() { return status; }
 }
