@@ -72,7 +72,8 @@ public class AssignmentsActivity extends AppCompatActivity {
     }
 
     private void fetchAssignments() {
-        String url = "http://10.0.2.2/mobileProject/assignments.php?action=list_assignments_for_student&student_id=" + currentStudentId;
+        String baseUrl = getString(R.string.ip);
+        String url = baseUrl + "/mobileProject/assignments.php?action=list_assignments_for_student&student_id=" + currentStudentId;
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null, response -> {
             try {

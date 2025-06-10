@@ -80,7 +80,9 @@ public class SubmitHomeworkActivity extends AppCompatActivity {
     private void uploadSubmission(Uri fileUri) {
         setLoading(true);
 
-        String url = "http://10.0.2.2/mobileProject/assignments.php?action=submit_assignment";
+        String baseUrl = getString(R.string.ip); // or getApplicationContext().getString(...) if needed
+        String url = baseUrl + "/mobileProject/assignments.php?action=submit_assignment";
+
 
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST, url,
                 response -> {
