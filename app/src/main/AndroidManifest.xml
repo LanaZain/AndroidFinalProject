@@ -18,6 +18,8 @@
         <activity android:name=".SubmitHomeworkActivity" />
         <activity android:name=".GradesActivity" />
         <activity android:name=".ScheduleActivity" />
+        <activity android:name=".ProfileActivity"
+            android:label="Student Profile" />
 
 
         <activity

@@ -15,6 +15,7 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,6 +43,28 @@ public class AssignmentsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_assignments);
 
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.nav_home) {
+                Intent intent = new Intent(AssignmentsActivity.this, MainActivity.class);
+                startActivity(intent);
+                return true;
+            } else if (itemId == R.id.nav_profile) {
+
+
+//                Intent intent = new Intent(AssignmentsActivity.this, ProfileActivity.class);
+//                // No studentId to pass here
+//                startActivity(intent);
+//                return true;
+            }
+            return false;
+        });
+
+
         TextView headerTitle = findViewById(R.id.headerTitle);
         headerTitle.setText(R.string.assignments_head);
 
@@ -51,6 +74,8 @@ public class AssignmentsActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         // --- CHANGE 2: Initialize the new list type ---
         assignmentItemList = new ArrayList<>();
+
+
 
         // --- CHANGE 3: The adapter's click listener now provides an AssignmentItem ---
         adapter = new AssignmentAdapter(this, assignmentItemList, item -> {
