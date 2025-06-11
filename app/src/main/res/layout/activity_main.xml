@@ -29,9 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="SmartStack\nschool"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:textColor="#fff" />
+                    style="@style/HeaderTextStyle" />
 
                 <TextView
                     android:id="@+id/textGradeSection"
@@ -39,8 +37,8 @@
                     android:layout_height="wrap_content"
                     android:text="Class\n11th Grade B"
                     android:layout_gravity="end"
-                    android:textColor="#fff"
-                    android:textSize="14sp" />
+                    style="@style/SubTextStyle" />
+
             </LinearLayout>
 
             <!-- Profile -->
@@ -53,20 +51,20 @@
 
                 <ImageView
                     android:id="@+id/imageProfile"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:src="@android:drawable/ic_menu_myplaces"
-                    android:background="@drawable/circle_bg"
-                    android:padding="16dp" />
+                    android:padding="10dp"
+                    android:layout_marginTop="-10dp" />
 
                 <TextView
                     android:id="@+id/textName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Lana Zain"
-                    android:textColor="#000"
-                    android:layout_marginTop="8dp"
-                    android:textStyle="bold" />
+                    style="@style/ProfileNameStyle"
+                    android:layout_marginTop="8dp" />
+
             </LinearLayout>
 
             <GridLayout

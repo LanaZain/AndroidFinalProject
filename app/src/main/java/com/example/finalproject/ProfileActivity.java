@@ -1,6 +1,7 @@
 package com.example.finalproject;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -61,11 +62,16 @@ public class ProfileActivity extends AppCompatActivity {
         new Thread(() -> {
             try {
                 String urlString = "http://10.0.2.2/mobileProject/get_student_profile.php?student_id=" + studentId;
+                Log.d("ProfileActivity", "Request URL: " + urlString);
+
                 URL url = new URL(urlString);
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
 
-                if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                int responseCode = conn.getResponseCode();
+                Log.d("ProfileActivity", "Response Code: " + responseCode);
+
+                if (responseCode == HttpURLConnection.HTTP_OK) {
                     BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                     StringBuilder response = new StringBuilder();
                     String line;
@@ -74,9 +80,11 @@ public class ProfileActivity extends AppCompatActivity {
                     }
                     in.close();
 
-                    JSONObject json = new JSONObject(response.toString());
+                    String jsonString = response.toString();
+                    Log.d("ProfileActivity", "JSON Response: " + jsonString);
 
-                    // Parse all the new fields
+                    JSONObject json = new JSONObject(jsonString);
+
                     final String name = json.getString("name");
                     final String studentNumber = json.getString("student_number");
                     final String grade = json.getString("grade");
@@ -89,7 +97,6 @@ public class ProfileActivity extends AppCompatActivity {
                     final String address = json.getString("address");
                     final String photoUrl = json.getString("photo_url");
 
-                    // Update UI on the main thread
                     runOnUiThread(() -> {
                         profileName.setText(name);
                         infoStudentId.setText("Student ID: " + studentNumber);
@@ -105,13 +112,16 @@ public class ProfileActivity extends AppCompatActivity {
                                 .load(photoUrl)
                                 .circleCrop()
                                 .placeholder(R.drawable.circle_bg)
+                                .error(R.drawable.circle_bg)  // in case loading fails
                                 .into(profileImage);
                     });
                 } else {
-                    // Handle server errors
+                    Log.e("ProfileActivity", "Server returned non-OK code: " + responseCode);
+                    runOnUiThread(() -> Toast.makeText(this, "Failed to load profile data", Toast.LENGTH_LONG).show());
                 }
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e("ProfileActivity", "Error fetching profile data", e);
+                runOnUiThread(() -> Toast.makeText(this, "Error loading profile data", Toast.LENGTH_LONG).show());
             }
         }).start();
     }
