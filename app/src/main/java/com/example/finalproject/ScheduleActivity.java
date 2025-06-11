@@ -2,7 +2,6 @@ package com.example.finalproject;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -12,6 +11,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.Request;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,7 +30,6 @@ public class ScheduleActivity extends AppCompatActivity {
     LinearLayout dayButtonsLayout;
     RecyclerView scheduleRecyclerView;
     ScheduleAdapter adapter;
-
     HashMap<String, List<ScheduleItem>> scheduleMap;
 
     @Override
@@ -45,8 +50,24 @@ public class ScheduleActivity extends AppCompatActivity {
         adapter = new ScheduleAdapter(new ArrayList<>());
         scheduleRecyclerView.setAdapter(adapter);
 
-        prepareScheduleData();
+        initializeEmptySchedule();
         setupDayButtons();
+        fetchScheduleData();
+    }
+
+    private void initializeEmptySchedule() {
+        scheduleMap = new HashMap<>();
+        for (String day : days) {
+            scheduleMap.put(day, getFreeSchedule());
+        }
+    }
+
+    private List<ScheduleItem> getFreeSchedule() {
+        List<ScheduleItem> freeList = new ArrayList<>();
+        for (int i = 1; i <= 8; i++) {
+            freeList.add(new ScheduleItem(getClassTime(i), "Free", ""));
+        }
+        return freeList;
     }
 
     private void setupDayButtons() {
@@ -65,9 +86,7 @@ public class ScheduleActivity extends AppCompatActivity {
             button.setLayoutParams(params);
 
             button.setOnClickListener(v -> {
-                if (selectedButton != null) {
-                    selectedButton.setSelected(false);
-                }
+                if (selectedButton != null) selectedButton.setSelected(false);
                 button.setSelected(true);
                 selectedButton = button;
                 adapter.updateData(scheduleMap.get(day));
@@ -83,26 +102,77 @@ public class ScheduleActivity extends AppCompatActivity {
         }
     }
 
-    private void prepareScheduleData() {
-        scheduleMap = new HashMap<>();
-        scheduleMap.put("Sunday", List.of(
-                new ScheduleItem("8:00 AM", "Mathematics", "Room 101"),
-                new ScheduleItem("9:15 AM", "Arabic", "Room 102"),
-                new ScheduleItem("10:30 AM", "Religion", "Room 103"),
-                new ScheduleItem("11:45 AM", "English", "Room 104"),
-                new ScheduleItem("1:00 PM", "Mathematics", "Room 101"),
-                new ScheduleItem("2:15 PM", "Physics", "Room 105"),
-                new ScheduleItem("3:30 PM", "Biology", "Room 106"),
-                new ScheduleItem("4:45 PM", "Arts", "Room 107")
-        ));
-        scheduleMap.put("Monday", List.of(
-                new ScheduleItem("8:00 AM", "English", "Room 104"),
-                new ScheduleItem("9:15 AM", "History", "Room 108"),
-                new ScheduleItem("10:30 AM", "Chemistry", "Room 109"),
-                new ScheduleItem("11:45 AM", "Mathematics", "Room 101"),
-                new ScheduleItem("1:00 PM", "Arabic", "Room 102"),
-                new ScheduleItem("2:15 PM", "Physics", "Room 105")
-        ));
-        // Add rest of the days similarly...
+    private void fetchScheduleData() {
+        String url = getString(R.string.ip) + "/mobileProject/schedule.php?action=list_schedule";
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                response -> {
+                    try {
+                        for (String day : days) {
+                            JSONArray dayArray = response.optJSONArray(day);
+                            List<ScheduleItem> daySchedule = new ArrayList<>();
+
+                            if (dayArray != null && dayArray.length() > 0) {
+                                JSONObject classData = dayArray.getJSONObject(0);
+
+                                for (int i = 1; i <= 8; i++) {
+                                    String periodKey = getClassKey(i) + "_name";  // e.g., "first_class"
+                                    String className = classData.optString(periodKey, "Free");
+                                    String teacherName = classData.optString("teacher_name", "");
+
+                                    // Fallback if null or blank
+                                    if (className == null || className.equals("null")) className = "Free";
+                                    if (teacherName == null || teacherName.equals("null")) teacherName = "";
+
+                                    daySchedule.add(new ScheduleItem(getClassTime(i), className, teacherName));
+                                }
+                            } else {
+                                daySchedule = getFreeSchedule(); // Empty means all Free
+                            }
+
+                            scheduleMap.put(day, daySchedule);
+                        }
+
+                        if (selectedButton != null) {
+                            String selectedDay = selectedButton.getText().toString();
+                            adapter.updateData(scheduleMap.get(selectedDay));
+                        }
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> error.printStackTrace()
+        );
+
+        Volley.newRequestQueue(this).add(request);
+    }
+
+    private String getClassKey(int index) {
+        switch (index) {
+            case 1: return "first_class";
+            case 2: return "second_class";
+            case 3: return "third_class";
+            case 4: return "fourth_class";
+            case 5: return "fifth_class";
+            case 6: return "sixth_class";
+            case 7: return "seventh_class";
+            case 8: return "eighth_class";
+            default: return "";
+        }
+    }
+
+    private String getClassTime(int index) {
+        switch (index) {
+            case 1: return "8:00 AM";
+            case 2: return "9:15 AM";
+            case 3: return "10:30 AM";
+            case 4: return "11:45 AM";
+            case 5: return "1:00 PM";
+            case 6: return "2:15 PM";
+            case 7: return "3:30 PM";
+            case 8: return "4:45 PM";
+            default: return "";
+        }
     }
 }
