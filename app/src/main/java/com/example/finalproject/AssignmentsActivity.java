@@ -77,7 +77,6 @@ public class AssignmentsActivity extends AppCompatActivity {
 
 
 
-        // --- CHANGE 3: The adapter's click listener now provides an AssignmentItem ---
         adapter = new AssignmentAdapter(this, assignmentItemList, item -> {
             Intent intent = new Intent(AssignmentsActivity.this, SubmitHomeworkActivity.class);
             Assignment assignment = item.getAssignment(); // Extract the assignment

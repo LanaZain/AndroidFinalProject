@@ -1,7 +1,6 @@
 package com.example.finalproject;
 
 public class Assignment {
-    // Note: I've added an ID field. It's very useful to have.
     private int id;
     private String title;
     private String description;

@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvName, tvGradeSection;
     private ImageView profileImage;
 
-    String studentId = "1"; // Fixed student ID for testing
+    String studentId = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

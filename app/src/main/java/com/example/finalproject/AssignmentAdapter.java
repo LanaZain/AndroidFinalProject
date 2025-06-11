@@ -13,17 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-// --- CHANGE 1: The adapter now manages a list of AssignmentItem objects ---
 public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.ViewHolder> {
     private Context context;
-    private List<AssignmentItem> assignmentItems; // <-- This list has changed
+    private List<AssignmentItem> assignmentItems;
     private OnItemClickListener listener;
 
     public interface OnItemClickListener {
-        void onItemClick(AssignmentItem item); // <-- The click listener also passes the whole item
+        void onItemClick(AssignmentItem item);
     }
 
-    // --- CHANGE 2: The constructor now accepts a List<AssignmentItem> ---
     public AssignmentAdapter(Context context, List<AssignmentItem> assignmentItems, OnItemClickListener listener) {
         this.context = context;
         this.assignmentItems = assignmentItems;
@@ -70,13 +68,11 @@ public class AssignmentAdapter extends RecyclerView.Adapter<AssignmentAdapter.Vi
         }
 
 
-        // Set click listener
         holder.itemView.setOnClickListener(v -> listener.onItemClick(currentItem));
     }
 
     @Override
     public int getItemCount() {
-        // --- CHANGE 4: The item count is the size of the new list ---
         return assignmentItems.size();
     }
 

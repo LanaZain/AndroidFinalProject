@@ -63,7 +63,6 @@
                     android:textColor="#964B4B"
                     android:padding="8dp" />
             </TableRow>
-            <!-- Data rows will be added from Java -->
         </TableLayout>
     </ScrollView>
     <include

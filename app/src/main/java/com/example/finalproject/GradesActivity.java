@@ -38,7 +38,7 @@ public class GradesActivity extends AppCompatActivity {
     }
 
     private void fetchGrades() {
-        String baseUrl = getApplicationContext().getString(R.string.ip);
+        String baseUrl = getString(R.string.ip);
         String url = baseUrl + "/mobileProject/grades.php?action=list_grades_for_student&student_id=" + currentStudentId;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {

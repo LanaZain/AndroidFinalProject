@@ -103,7 +103,7 @@ public class ScheduleActivity extends AppCompatActivity {
     }
 
     private void fetchScheduleData() {
-        String url = getString(R.string.ip) + "/mobileProject/schedule.php?action=list_schedule";
+         String url = getString(R.string.ip) + "/mobileProject/schedule.php?action=list_schedule";
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 response -> {

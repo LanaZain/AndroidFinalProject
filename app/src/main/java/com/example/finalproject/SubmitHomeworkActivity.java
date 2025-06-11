@@ -8,6 +8,7 @@ import android.provider.OpenableColumns;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -40,7 +41,7 @@ public class SubmitHomeworkActivity extends AppCompatActivity {
 
     private ArrayList<Uri> selectedFiles;
     private int assignmentId;
-    private int studentId = 1; // HARDCODED: Replace with actual logged-in student ID
+    private int studentId = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +63,9 @@ public class SubmitHomeworkActivity extends AppCompatActivity {
             return;
         }
 
+        ImageButton backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(v -> finish());
+
         pickFilesButton.setOnClickListener(v -> openFilePicker());
 
         submitFab.setOnClickListener(v -> {
@@ -74,13 +78,11 @@ public class SubmitHomeworkActivity extends AppCompatActivity {
         });
     }
 
-    // In SubmitHomeworkActivity.java
 
-    // In SubmitHomeworkActivity.java
     private void uploadSubmission(Uri fileUri) {
         setLoading(true);
 
-        String baseUrl = getString(R.string.ip); // or getApplicationContext().getString(...) if needed
+        String baseUrl = getString(R.string.ip);
         String url = baseUrl + "/mobileProject/assignments.php?action=submit_assignment";
 
 
@@ -100,7 +102,6 @@ public class SubmitHomeworkActivity extends AppCompatActivity {
                     }
                 },
                 error -> {
-                    // ... (your existing error code is fine) ...
                     setLoading(false);
                     String errorMessage = "Unknown error";
                     NetworkResponse networkResponse = error.networkResponse;
@@ -126,9 +127,6 @@ public class SubmitHomeworkActivity extends AppCompatActivity {
             protected Map<String, DataPart> getByteData() {
                 Map<String, DataPart> params = new HashMap<>();
                 try {
-                    // =======================================================
-                    //  ADDED LOGGING TO CHECK FILE READING
-                    // =======================================================
                     Log.d("FILE_READ", "Attempting to read file: " + getFileName(fileUri));
                     byte[] fileData = getBytesFromUri(fileUri);
                     Log.d("FILE_READ", "Successfully read " + fileData.length + " bytes.");
@@ -136,20 +134,14 @@ public class SubmitHomeworkActivity extends AppCompatActivity {
 
                     params.put("file", new DataPart(getFileName(fileUri), fileData));
                 } catch (IOException e) {
-                    // =======================================================
-                    //  THIS IS A LIKELY SOURCE OF THE "UNKNOWN ERROR"
-                    // =======================================================
+
                     Log.e("FILE_READ_ERROR", "Failed to read file into bytes.", e);
-                    // =======================================================
                     e.printStackTrace();
                 }
                 return params;
             }
         };
 
-        // =======================================================
-        //  STEP 1: INCREASE THE TIMEOUT FOR THE REQUEST
-        // =======================================================
         int timeoutMs = 30000; // 30 seconds
         multipartRequest.setRetryPolicy(new com.android.volley.DefaultRetryPolicy(
                 timeoutMs,
@@ -173,8 +165,7 @@ public class SubmitHomeworkActivity extends AppCompatActivity {
     private void openFilePicker() {
         Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
         intent.setType("*/*");
-        // To allow multiple file selection, though we only upload one in this example
-        // intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+
         startActivityForResult(Intent.createChooser(intent, "Select File"), PICK_FILE_REQUEST_CODE);
     }
 
@@ -185,7 +176,6 @@ public class SubmitHomeworkActivity extends AppCompatActivity {
             fileChipGroup.removeAllViews();
             selectedFiles.clear();
 
-            // This handles both single and multiple file selection, but we'll focus on one
             if (data.getClipData() != null) {
                 Uri fileUri = data.getClipData().getItemAt(0).getUri();
                 addFileChip(fileUri);

@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="16dp"
-        android:background="@color/rose_300">
+        android:background="@color/darkpink">
 
         <ImageButton
             android:id="@+id/backButton"
