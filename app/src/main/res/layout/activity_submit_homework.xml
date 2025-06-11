@@ -228,10 +228,5 @@
         android:layout_centerInParent="true"
         android:visibility="gone"
         tools:visibility="visible" />
-    <!-- Bottom Navigation -->
-    <include
-        layout="@layout/bottom_nav"
-        android:layout_gravity="bottom"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

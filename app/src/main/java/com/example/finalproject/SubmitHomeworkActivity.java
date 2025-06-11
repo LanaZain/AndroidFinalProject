@@ -51,7 +51,7 @@ public class SubmitHomeworkActivity extends AppCompatActivity {
         fileChipGroup = findViewById(R.id.fileChipGroup);
         Button pickFilesButton = findViewById(R.id.pickFilesButton);
         submitFab = findViewById(R.id.submitFab);
-        progressBar = findViewById(R.id.progressBar); // Make sure you have a ProgressBar in your XML layout
+        progressBar = findViewById(R.id.progressBar);
 
         selectedFiles = new ArrayList<>();
 
@@ -88,7 +88,6 @@ public class SubmitHomeworkActivity extends AppCompatActivity {
 
         VolleyMultipartRequest multipartRequest = new VolleyMultipartRequest(Request.Method.POST, url,
                 response -> {
-                    // ... (your existing success code is fine) ...
                     setLoading(false);
                     String resultResponse = new String(response.data);
                     try {

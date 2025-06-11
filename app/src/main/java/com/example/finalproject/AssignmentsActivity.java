@@ -33,7 +33,6 @@ public class AssignmentsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private AssignmentAdapter adapter;
-    // --- CHANGE 1: The list is now of type AssignmentItem ---
     private ArrayList<AssignmentItem> assignmentItemList;
 
     private int currentStudentId = 1;
@@ -44,25 +43,6 @@ public class AssignmentsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_assignments);
 
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            int itemId = item.getItemId();
-
-            if (itemId == R.id.nav_home) {
-                Intent intent = new Intent(AssignmentsActivity.this, MainActivity.class);
-                startActivity(intent);
-                return true;
-            } else if (itemId == R.id.nav_profile) {
-
-
-//                Intent intent = new Intent(AssignmentsActivity.this, ProfileActivity.class);
-//                // No studentId to pass here
-//                startActivity(intent);
-//                return true;
-            }
-            return false;
-        });
 
 
         TextView headerTitle = findViewById(R.id.headerTitle);
@@ -72,7 +52,6 @@ public class AssignmentsActivity extends AppCompatActivity {
         backButton.setOnClickListener(v -> finish());
 
         recyclerView = findViewById(R.id.recyclerView);
-        // --- CHANGE 2: Initialize the new list type ---
         assignmentItemList = new ArrayList<>();
 
 
