@@ -1,237 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#E7E5D8">
+    android:padding="24dp"
+    android:background="#FFFFFF">
 
-    <!-- Scrollable content -->
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/main"
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:layout_gravity="center">
 
+        <!-- عنوان الواجهة -->
+        <TextView
+            android:id="@+id/titleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Manager"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#C19494"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- الصف الأول -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="12dp">
 
-            <!-- Header -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="180dp"
-                android:orientation="vertical"
-                android:background="#C4A4A3"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="SmartStack\nschool"
-                    style="@style/HeaderTextStyle" />
-
-                <TextView
-                    android:id="@+id/textGradeSection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Class\n11th Grade B"
-                    android:layout_gravity="end"
-                    style="@style/SubTextStyle" />
-
-            </LinearLayout>
-
-            <!-- Profile -->
-            <LinearLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/buttonAddStudent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_marginTop="-40dp"
-                android:orientation="vertical">
+                android:layout_weight="1"
+                android:text="  Add Student"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#C19494"
+                android:drawableLeft="@drawable/veiw"
+                android:padding="10dp"
+                android:layout_marginEnd="8dp"/>
 
-                <ImageView
-                    android:id="@+id/imageProfile"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@android:drawable/ic_menu_myplaces"
-                    android:padding="10dp"
-                    android:layout_marginTop="-10dp" />
-
-                <TextView
-                    android:id="@+id/textName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lana Zain"
-                    style="@style/ProfileNameStyle"
-                    android:layout_marginTop="8dp" />
-
-            </LinearLayout>
-
-            <GridLayout
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/buttonAddTeacher"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:columnCount="2"
-                android:padding="16dp">
-
-                <!-- Assignments -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardAssignments"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_columnWeight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#F3EBEB">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="16dp">
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@android:drawable/ic_menu_agenda" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Assignments"
-                            android:textStyle="bold"
-                            android:layout_marginTop="8dp" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- Grades -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardGrades"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_columnWeight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#F3EBEB">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="16dp">
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@android:drawable/ic_menu_info_details" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Grades"
-                            android:textStyle="bold"
-                            android:layout_marginTop="8dp" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- Weekly Schedule -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardSchedule"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_columnWeight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#F3EBEB">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="16dp">
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@android:drawable/ic_menu_week" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Weekly Schedule"
-                            android:textStyle="bold"
-                            android:layout_marginTop="8dp" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- Exams -->
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardExams"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_columnWeight="1"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?attr/selectableItemBackground"
-                    app:cardCornerRadius="20dp"
-                    app:cardElevation="4dp"
-                    app:cardBackgroundColor="#F3EBEB">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:padding="16dp">
-
-                        <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
-                            android:src="@android:drawable/ic_menu_edit" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Exams"
-                            android:textStyle="bold"
-                            android:layout_marginTop="8dp" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-            </GridLayout>
-
-            <!-- Notifications -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Notifications and Announcements"
-                    android:textColor="#8B0000"
-                    android:textStyle="bold" />
-            </LinearLayout>
+                android:layout_weight="1"
+                android:text="  Add Teacher"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#C19494"
+                android:drawableLeft="@drawable/teacher"
+                android:padding="10dp"
+                android:layout_marginStart="8dp"/>
         </LinearLayout>
-    </ScrollView>
 
-    <include layout="@layout/bottom_nav" />
+        <!-- الصف الثاني -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="12dp">
 
-</LinearLayout>
+            <Button
+                android:id="@+id/buttonViewStudents"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="  View Classes"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#C19494"
+                android:drawableLeft="@drawable/eye"
+                android:padding="10dp"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/buttonAddStch"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="  Add Schedule"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#C19494"
+                android:drawableLeft="@drawable/schedulee"
+                android:padding="10dp"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+        <!-- الصف الثالث -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="12dp">
+
+            <Button
+                android:id="@+id/buttonViewTeacherSchedule"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="  View Teacher Sch"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#C19494"
+                android:drawableLeft="@drawable/hi"
+                android:padding="10dp"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/buttonViewClassSchedule"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="  Add subject"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#C19494"
+                android:drawableLeft="@drawable/classroom"
+                android:padding="10dp"
+                android:layout_marginStart="8dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

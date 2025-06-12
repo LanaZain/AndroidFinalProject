@@ -5,4 +5,9 @@
     <string name="home">Home</string>
     <string name="profile">Profile</string>
     <string name="assignments_head">Assignments</string>
+    <string-array name="user_types">
+        <item>طالب</item>
+        <item>معلم</item>
+        <item>مسجل</item>
+    </string-array>
 </resources>

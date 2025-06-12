@@ -14,13 +14,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalProject"
         tools:targetApi="31">
+<!--        <activity android:name=".AssignmentsActivity" />-->
+<!--        <activity android:name=".SubmitHomeworkActivity" />-->
+<!--        <activity android:name=".GradesActivity" />-->
+<!--        <activity android:name=".ScheduleActivity" />-->
+<!--        <activity android:name=".ProfileActivity"-->
+<!--            android:label="Student Profile" />-->
+
+        <!-- Activities -->
+        <activity android:name=".AddScheduleActivity" />
+        <activity android:name=".AddStudentActivity" />
+        <activity android:name=".AddSubjectActivity" />
+        <activity android:name=".AddTeacherActivity" />
         <activity android:name=".AssignmentsActivity" />
-        <activity android:name=".SubmitHomeworkActivity" />
+<!--        <activity android:name=".AssignmentAdapter" />-->
+<!--        <activity android:name=".AuthManager" />-->
         <activity android:name=".GradesActivity" />
-        <activity android:name=".ScheduleActivity" />
+        <activity android:name=".HomeActivity" />
+        <activity android:name=".LoginActivity" />
+<!--        <activity android:name=".NetworkManager" />-->
         <activity android:name=".ProfileActivity"
             android:label="Student Profile" />
-
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".RegistrarActivity" />
+        <activity android:name=".ScheduleActivity" />
+        <activity android:name=".StudentsListActivity" />
+        <activity android:name=".SubmitHomeworkActivity" />
+        <activity android:name=".ViewScheduleActivity" />
+        <activity android:name=".ViewStudentsActivity" />
 
         <activity
             android:name=".MainActivity"

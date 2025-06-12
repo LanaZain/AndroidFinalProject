@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#FFFFFF">
+
+    <!-- Page Title -->
+    <TextView
+        android:id="@+id/pageTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Class"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="24dp" />
+
+    <!-- GridLayout for Class Buttons -->
+    <GridLayout
+        android:id="@+id/gridClasses"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:columnCount="2"
+        android:rowCount="6"
+        android:alignmentMode="alignMargins"
+        android:columnOrderPreserved="false"
+        android:useDefaultMargins="true">
+
+        <!-- Class Buttons: كل زر بعرض مساوي وارتفاع تلقائي -->
+        <Button
+            android:id="@+id/btnClass1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:backgroundTint="#C19494"
+            android:text="Class 1" />
+
+        <Button
+            android:id="@+id/btnClass2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:backgroundTint="#C19494"
+            android:text="Class 2" />
+
+        <Button
+            android:id="@+id/btnClass3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:backgroundTint="#C19494"
+            android:text="Class 3" />
+
+        <Button
+            android:id="@+id/btnClass4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:backgroundTint="#C19494"
+            android:text="Class 4" />
+
+        <Button
+            android:id="@+id/btnClass5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:backgroundTint="#C19494"
+            android:text="Class 5" />
+
+        <Button
+            android:id="@+id/btnClass6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:backgroundTint="#C19494"
+            android:text="Class 6" />
+
+        <Button
+            android:id="@+id/btnClass7"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:backgroundTint="#C19494"
+            android:text="Class 7" />
+
+        <Button
+            android:id="@+id/btnClass8"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:backgroundTint="#C19494"
+            android:text="Class 8" />
+
+        <Button
+            android:id="@+id/btnClass9"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:backgroundTint="#C19494"
+            android:text="Class 9" />
+
+        <Button
+            android:id="@+id/btnClass10"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:backgroundTint="#C19494"
+            android:text="Class 10" />
+
+        <Button
+            android:id="@+id/btnClass11"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:backgroundTint="#C19494"
+            android:text="Class 11" />
+
+        <Button
+            android:id="@+id/btnClass12"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_columnWeight="1"
+            android:layout_rowWeight="1"
+            android:backgroundTint="#C19494"
+            android:text="Class 12" />
+
+    </GridLayout>
+
+</LinearLayout>

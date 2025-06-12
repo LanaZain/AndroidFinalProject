@@ -1,8 +1,8 @@
 package com.example.finalproject;
-import com.example.finalproject.R;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,14 +24,28 @@ public class MainActivity extends AppCompatActivity {
 
     private TextView tvName, tvGradeSection;
     private ImageView profileImage;
+    private Button logoutButton;
 
     String studentId = "1";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_registrar);
+        AuthManager authManager = new AuthManager(this);
+        if (! authManager.isLoggedIn()) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+        logoutButton = findViewById(R.id.logoutButton4);
 
+        logoutButton.setOnClickListener(v -> {
+            authManager.logout();
+            startActivity(new Intent(this, LoginActivity.class));
+            finish();
+        });
         // Initialize bottom navigation view
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
